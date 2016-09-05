@@ -61,8 +61,6 @@ public class ConversorBaseBigDecimal {
 	}
 
 	private static String deDecimalFracionario(BigDecimal decimal, int baseDestino,int limite) {
-		
-			
 		if(limite>0){		
 			BigDecimal sM = decimal.multiply(BigDecimal.valueOf(baseDestino));  
 			if(decimal.compareTo(new BigDecimal(0.00000))==0){
@@ -73,10 +71,6 @@ public class ConversorBaseBigDecimal {
 		}else{
 			return "";
 		}
-		
-	
-		}
-	
 	}
 
 	private static boolean verificarBase(String numero, long base) {
