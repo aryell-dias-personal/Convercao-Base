@@ -41,11 +41,13 @@ public class ConversorBaseBigDecimal {
 
 		if (numero.contains(",")) {
 			aux = numero.split(",");
+		} else if (numero.contains(".")) {
+			aux = numero.split("\\.");
 		} else {
 			return converter(numero, baseOrigem, baseDestino);
 		}
-		return converter(aux[0], baseOrigem, baseDestino) + ","
-				+ deDecimalFracionario(paraDecimalFracionario(aux[1], baseOrigem, limite), baseDestino,limite);
+		return converter(aux[0], baseOrigem, baseDestino) + "."
+				+ deDecimalFracionario(paraDecimalFracionario(aux[1], baseOrigem, limite), baseDestino, limite);
 	}
 
 	private static BigDecimal paraDecimalFracionario(String numero, int baseOrigem, int limite) {
@@ -60,15 +62,16 @@ public class ConversorBaseBigDecimal {
 		return decimal;
 	}
 
-	private static String deDecimalFracionario(BigDecimal decimal, int baseDestino,int limite) {
-		if(limite>0){		
-			BigDecimal sM = decimal.multiply(BigDecimal.valueOf(baseDestino));  
-			if(decimal.compareTo(new BigDecimal(0.00000))==0){
+	private static String deDecimalFracionario(BigDecimal decimal, int baseDestino, int limite) {
+		if (limite > 0) {
+			BigDecimal sM = decimal.multiply(BigDecimal.valueOf(baseDestino));
+			if (decimal.compareTo(new BigDecimal(0.00000)) == 0) {
 				return "";
-			}else{
-				return Character.toString(digitos.charAt(sM.intValue())) + deDecimalFracionario(sM.subtract(new BigDecimal(sM.intValue())),baseDestino,limite-1);
+			} else {
+				return Character.toString(digitos.charAt(sM.intValue()))
+						+ deDecimalFracionario(sM.subtract(new BigDecimal(sM.intValue())), baseDestino, limite - 1);
 			}
-		}else{
+		} else {
 			return "";
 		}
 	}
@@ -108,5 +111,5 @@ public class ConversorBaseBigDecimal {
 					+ digitos.charAt((decimal.remainder(BigDecimal.valueOf(baseDestino)).intValue())) + "";
 		}
 	}
-	
+
 }
