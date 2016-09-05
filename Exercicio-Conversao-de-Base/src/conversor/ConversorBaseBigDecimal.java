@@ -62,7 +62,7 @@ public class ConversorBaseBigDecimal {
 
 	private static String deDecimalFracionario(BigDecimal decimal, int baseDestino,int limite) {
 		
-		if(decimal.equals(BigDecimal.ZERO)){
+		if(decimal.compareTo(new BigDecimal(0.00000)) == 0){
 			return "0";
 		}else{
 			if(decimal.compareTo(new BigDecimal(1))<0){
