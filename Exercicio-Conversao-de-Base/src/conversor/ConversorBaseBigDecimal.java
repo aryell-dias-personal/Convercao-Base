@@ -89,7 +89,7 @@ public class ConversorBaseBigDecimal {
 					return Character.toString(digitos.charAt(Integer.parseInt(retorno))) + 
 							deDecimalFracionario(new BigDecimal(proximoDecimal), baseDestino, limite-1);
 				}else{
-					return Character.toString(digitos.charAt(Integer.parseInt(retorno)));
+					return "";
 				}
 			}else{	
 				
