@@ -65,8 +65,11 @@ public class ConversorBaseBigDecimal {
 		if(decimal.equals(BigDecimal.ZERO)){
 			return "0";
 		}else{
-			for(int i= 0; i<limite; i++){
+			if(decimal.compareTo(new BigDecimal(1))<0){
+			int numeroDeDigitos = decimal.toString().length() - 2;
+			for(int i= 0; i<numeroDeDigitos; i++){
 				decimal = decimal.multiply(BigDecimal.TEN);
+			}
 			}
 		}
 		
