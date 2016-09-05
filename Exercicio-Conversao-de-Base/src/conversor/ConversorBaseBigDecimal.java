@@ -62,47 +62,19 @@ public class ConversorBaseBigDecimal {
 
 	private static String deDecimalFracionario(BigDecimal decimal, int baseDestino,int limite) {
 		
-		if(decimal.compareTo(new BigDecimal(0.00000)) == 0){
-			return "0";
+			
+		if(limite>0){		
+			BigDecimal sM = decimal.multiply(BigDecimal.valueOf(baseDestino));  
+			if(decimal.compareTo(new BigDecimal(0.00000))==0){
+				return "";
+			}else{
+				return Character.toString(digitos.charAt(sM.intValue())) + deDecimalFracionario(sM.subtract(new BigDecimal(sM.intValue())),baseDestino,limite-1);
+			}
 		}else{
-			if(decimal.compareTo(new BigDecimal(1))<0){
-			int numeroDeDigitos = decimal.toString().length() - 2;
-			for(int i= 0; i<numeroDeDigitos; i++){
-				decimal = decimal.multiply(BigDecimal.TEN);
-			}
-			}
+			return "";
 		}
 		
-		if (decimal.compareTo(BigDecimal.valueOf(baseDestino)) < 0) {
-		
-			return Character.toString(digitos.charAt(decimal.intValue()));
-		
-		} else {
-			
-			String retorno = "";
-			String proximoDecimal = "";
-			String sD = decimal.toString();
-			String sM = (decimal.multiply(BigDecimal.valueOf(baseDestino)).toString());
-			if (sD.length() < sM.length()) {
-				
-				retorno = sM.substring(0,sM.length() - sD.length());
-				proximoDecimal = sM.substring(retorno.length(), sM.length());
-				
-				if(limite>0){
-					return Character.toString(digitos.charAt(Integer.parseInt(retorno))) + 
-							deDecimalFracionario(new BigDecimal(proximoDecimal), baseDestino, limite-1);
-				}else{
-					return "";
-				}
-			}else{	
-				
-				if(limite >0){
-					return "0" + deDecimalFracionario(new BigDecimal(sM), baseDestino, limite-1);
-				}else{
-					return "";
-				}
-				
-			}
+	
 		}
 	
 	}
