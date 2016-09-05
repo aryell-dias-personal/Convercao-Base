@@ -28,7 +28,7 @@ public class ConversorBaseBigDecimal {
 				}
 
 			} else {
-				throw new InvalidParameterException("O numero não está na base informada");
+				throw new InvalidParameterException("O numero nÃ£o estÃ¡ na base informada");
 			}
 		} else {
 			throw new InvalidParameterException("Base invalida");
@@ -93,7 +93,7 @@ public class ConversorBaseBigDecimal {
 				}
 			}else{	
 				
-				if(limite >0 && Integer.parseInt(sM) != 0){
+				if(limite >0){
 					return "0" + deDecimalFracionario(new BigDecimal(sM), baseDestino, limite-1);
 				}else{
 					return "";
