@@ -63,7 +63,7 @@ public class ConversorBaseBigDecimal {
 	private static String deDecimalFracionario(BigDecimal decimal, int baseDestino,int limite) {
 		
 		if(decimal.equals(BigDecimal.ZERO)){
-			return "";
+			return "0";
 		}else{
 			for(int i= 0; i<limite; i++){
 				decimal = decimal.multiply(BigDecimal.TEN);
