@@ -8,6 +8,17 @@ import java.security.InvalidParameterException;
 public class ConversorBaseBigDecimal {
 	private static final String digitos = "0123456789ABCDEF";
 
+	/**
+	 * Converte um numero inteiro de uma base numérica para outra
+	 * 
+	 * @param numero
+	 *            Numero a ser convertido
+	 * @param baseOrigem
+	 *            Base em que o numero está representado
+	 * @param baseDestino
+	 *            Base para qual o numero será convertido
+	 * @return Numero convertido para a baseDestino
+	 */
 	public static String converter(String numero, int baseOrigem, int baseDestino) {
 
 		numero = numero.toUpperCase();
@@ -35,6 +46,19 @@ public class ConversorBaseBigDecimal {
 		}
 	}
 
+	/**
+	 * Converte um numero inteiro ou fracionario de uma base numérica para outra
+	 * 
+	 * @param numero
+	 *            Numero a ser convertido
+	 * @param baseOrigem
+	 *            Base em que o numero está representado
+	 * @param baseDestino
+	 *            Base para qual o numero será convertido
+	 * @param limite
+	 *            Limite de casas decimais
+	 * @return Numero convertido para a baseDestino
+	 */
 	public static String converterFracionario(String numero, int baseOrigem, int baseDestino, int limite) {
 		numero = numero.toUpperCase();
 		String[] aux;
@@ -50,6 +74,7 @@ public class ConversorBaseBigDecimal {
 				+ deDecimalFracionario(paraDecimalFracionario(aux[1], baseOrigem, limite), baseDestino, limite);
 	}
 
+	// parte iterativa
 	private static BigDecimal paraDecimalFracionario(String numero, int baseOrigem, int limite) {
 		BigDecimal decimal = BigDecimal.ZERO;
 		long numeroDigitos = numero.length();
@@ -62,6 +87,7 @@ public class ConversorBaseBigDecimal {
 		return decimal;
 	}
 
+	// parte recursiva
 	private static String deDecimalFracionario(BigDecimal decimal, int baseDestino, int limite) {
 		if (limite > 0) {
 			BigDecimal sM = decimal.multiply(BigDecimal.valueOf(baseDestino));
@@ -76,6 +102,7 @@ public class ConversorBaseBigDecimal {
 		}
 	}
 
+	// Verifica se o numero pode ser representado em uma base
 	private static boolean verificarBase(String numero, long base) {
 		for (int i = 0; i < numero.length(); i++) {
 			int valor = digitos.indexOf(numero.charAt(i));
